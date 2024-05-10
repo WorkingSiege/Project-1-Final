@@ -65,28 +65,41 @@ class MainPage(QtWidgets.QMainWindow):
 
 
     def updateTable(self, uiPollAdmin, dataDict):       #Updates the table displayed in PollAdmin panel
-        tableWidget = uiPollAdmin.tableWidget
+        Database = uiPollAdmin.tableWidget
         keyOrder = ["ID", "Name", "County", "Candidate"]
-        tableWidget.setColumnCount(len(keyOrder))
-        tableWidget.setRowCount(len(dataDict)+1)  
+        Database.setColumnCount(len(keyOrder))
+        Database.setRowCount(len(dataDict)+1)  
 
 
         for col, key in enumerate(keyOrder):
             headerItem = QtWidgets.QTableWidgetItem(key)
-            tableWidget.setItem(0, col, headerItem)
+            Database.setItem(0, col, headerItem)
 
 
         row = 1
         for idNumber, data in dataDict.items():
-            tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(str(idNumber)))
+            Database.setItem(row, 0, QtWidgets.QTableWidgetItem(str(idNumber)))
             for col, key in enumerate(keyOrder[1:], start=1):
                 if key in data:
                     value = data[key]
                     valueItem = QtWidgets.QTableWidgetItem(str(value))
-                    tableWidget.setItem(row, col, valueItem)
+                    Database.setItem(row, col, valueItem)
             row += 1
 
+    def calculatePercentages(self):
+        totalVotes = len(self.VoteReg)
+        if totalVotes == 0:
+            return {}
+        
+        voteCounts = {}
+        for data in self.VoteReg.values():
+            candidate = data["Candidate"]
+            voteCounts[candidate] = voteCounts.get(candidate, 0 ) + 1
 
+        percentages = {}
+        for candidate, votes in voteCounts.items():
+            percentage = (votes/ totalVotes) * 100
+            percentages[candidate] = percentage
 
 
 if __name__ == "__main__":

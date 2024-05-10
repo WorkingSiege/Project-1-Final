@@ -27,7 +27,7 @@ class Ui_Form(object):
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
         self.tableWidget_2 = QtWidgets.QTableWidget(parent=Form)
-        self.tableWidget_2.setGeometry(QtCore.QRect(20, 360, 481, 71))
+        self.tableWidget_2.setGeometry(QtCore.QRect(20, 360, 481, 101))
         self.tableWidget_2.setObjectName("tableWidget_2")
         self.tableWidget_2.setColumnCount(0)
         self.tableWidget_2.setRowCount(0)

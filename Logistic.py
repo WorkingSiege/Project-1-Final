@@ -115,9 +115,3 @@ class MainPage(QtWidgets.QMainWindow):
             percentage = "{:.0f}%".format(percentages[candidate])
             PercentTable.setItem(1, col, QtWidgets.QTableWidgetItem(percentage))
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    mainpage = MainPage()
-    mainpage.show()
-    sys.exit(app.exec())
